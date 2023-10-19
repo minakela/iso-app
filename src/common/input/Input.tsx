@@ -1,22 +1,25 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
 import IInput from './IInput';
-
+import styles from './Input.module.css';
 const Input: React.FunctionComponent<IInput> = ({
-  label,
-  type,
-  placeholder,
+	name,
+	type,
+	value = '',
+	placeholder = '',
+	onChange,
 }) => {
-  return (
-    <Form>
-      <Form.Group controlId={`formBasic${label}`}>
-        <Form.Label >{label}</Form.Label>
-        <Form.Control
-          type={type}
-          placeholder={placeholder}/>
-      </Form.Group>
-    </Form>
-  );
+	return (
+		<div className="input-container">
+			<span>{name}</span>
+			<input
+				type={type}
+				className={styles['input']}
+				value={value}
+				onChange={onChange}
+				placeholder={placeholder}
+			/>
+		</div>
+	);
 };
 
 export default Input;

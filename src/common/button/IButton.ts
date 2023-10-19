@@ -1,7 +1,7 @@
 interface IButton {
 	name: string;
-	// disabled: boolean;
-	action: () => void;
+	disabled?: boolean;
+	onClick: () => void;
 	isHidden: boolean;
 }
 
