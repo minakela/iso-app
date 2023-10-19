@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Login from './pages/login';
+import Login from './pages/login page/login';
 import Header from './composite/header/Header';
-import Home from './pages/Home';
+import Home from './pages/home page/Home';
 
 const links = [
 	{ href: '/login', label: 'Login' },
