@@ -1,8 +1,9 @@
 interface IInput {
-  label: string;
+  name: string;
   type: string;
-  placeholder: string;
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  placeholder?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default IInput;
