@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import IsoButton from '../common/button/isoButton';
-import Input from '../common/input/Input';
+import IsoButton from '../../common/button/isoButton';
+import Input from '../../common/input/Input';
+import css from './loginStyle.module.css';
 
 const Login: React.FunctionComponent = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	return (
-		<div className="login">
+		<div className={css.login}>
 			<Input
 				name="email"
 				type="input"
@@ -27,6 +28,7 @@ const Login: React.FunctionComponent = () => {
 			/>
 			<IsoButton
 				name="Login"
+				isHidden={false}
 				onClick={() => {
 					console.log('login', email, password);
 				}}

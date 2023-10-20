@@ -1,2 +1,28 @@
 .container {
+	display: flex;
+	align-items: flex-start;
+	background-color: #7b0808;
+	color: #fff;
+	padding: 4px;
+	justify-content: space-between;
+	height: auto;
+}
+img {
+	border-radius: 25px;
+	height: 55px;
+	width: 55px;
+	margin: 5px 0 0 15px;
+}
+.container ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 3px;
+}
+.container ul li {
+	display: flex;
+	background-color: #ffffff;
+	margin: 10px 15px 0 0;
+	border-radius: 15px;
+	padding: 5px;
 }
