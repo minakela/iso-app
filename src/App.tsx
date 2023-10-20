@@ -1,7 +1,9 @@
+import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-import Login from './pages/login page/login';
+import Login from './pages/login-page/login';
 import Header from './composite/header/Header';
-import Home from './pages/home page/Home';
+import Home from './pages/home-page/Home';
+import Footer from './composite/footer/Footer';
 
 const links = [
 	{ href: '/login', label: 'Login' },
@@ -18,6 +20,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/home" element={<Home />} />
 			</Routes>
+			<Footer />
 		</div>
 	);
 }

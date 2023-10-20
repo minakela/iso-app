@@ -10,8 +10,9 @@ const Header: React.FunctionComponent<IHeader> = ({ links }) => {
 		color: '#7b0808',
 	};
 	return (
-		<div className={css.container}>
+		<div className={css.headerContainer}>
 			<img src="/assets/img/TiacLogo.png" alt="TiacLogo" title="Tiac" />
+			<h1>Tiac ISO issue service</h1>
 			<ul>
 				{links.map((link) => (
 					<li key={link.label}>
