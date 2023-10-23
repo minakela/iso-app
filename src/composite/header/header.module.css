@@ -1,6 +1,6 @@
-.container {
+.header-container {
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	background-color: #7b0808;
 	color: #fff;
 	padding: 4px;
@@ -13,16 +13,19 @@ img {
 	width: 55px;
 	margin: 5px 0 0 15px;
 }
-.container ul {
+.header-container ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-top: 3px;
 }
-.container ul li {
-	display: flex;
+.header-container ul li {
 	background-color: #ffffff;
 	margin: 10px 15px 0 0;
 	border-radius: 15px;
 	padding: 5px;
+	list-style-type: none;
+}
+h1 {
+	margin-left: 10px;
 }
