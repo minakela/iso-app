@@ -1,7 +1,8 @@
 import IRole from '../../models/IRole';
 import axios from 'axios';
+import IRoleService from './IRoleService';
 
-class RoleService {
+class RoleService implements IRoleService {
 	api = `http://localhost:8000/role`;
 
 	createRole = async (role: IRole): Promise<IRole> => {

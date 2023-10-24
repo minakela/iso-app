@@ -1,16 +1,12 @@
 import IUser from '../../models/IUsers';
 import axios from 'axios';
+import IUserService from './IUserService';
 
-class UserService {
-	UserService!: () => [];
-
-	constructor() {
-		this.UserService();
-	}
-
+class UserService implements IUserService {
+	api = `http://localhost:8000/user`;
 	createUser = async (user: IUser): Promise<IUser> => {
 		try {
-			const response = await axios.post(`${this.UserService}/user`, user);
+			const response = await axios.post(`${this.api}`, user);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -19,19 +15,16 @@ class UserService {
 
 	getUser = async (userId: number): Promise<IUser> => {
 		try {
-			const response = await axios.get(`${this.UserService}/users/${userId}`);
+			const response = await axios.get(`${this.api}/${userId}`);
 			return response.data;
 		} catch (error) {
 			throw error;
 		}
 	};
 
-	updateRole = async (user: IUser): Promise<IUser> => {
+	updateUser = async (user: IUser): Promise<IUser> => {
 		try {
-			const response = await axios.put(
-				`${this.UserService}/users/${user.id}`,
-				user
-			);
+			const response = await axios.put(`${this.api}/${user.id}`, user);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -40,7 +33,7 @@ class UserService {
 
 	deleteUser = async (userId: number): Promise<void> => {
 		try {
-			await axios.delete(`${this.UserService}/users/${userId}`);
+			await axios.delete(`${this.api}/${userId}`);
 		} catch (error) {
 			throw error;
 		}
@@ -48,7 +41,7 @@ class UserService {
 
 	getAllUsers = async (): Promise<IUser[]> => {
 		try {
-			const response = await axios.get(`${this.UserService}/users`);
+			const response = await axios.get(`${this.api}`);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -56,6 +49,6 @@ class UserService {
 	};
 }
 
-const roleService = new UserService();
+const userService = new UserService();
 
-export default UserService;
+export default userService;
