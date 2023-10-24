@@ -1,21 +1,15 @@
 import IIncidentTypes from '../../models/IIncidentTypes';
 import axios from 'axios';
+import IIncidentTypesService from './IIncidentTypesService';
 
-class IncidentTypesService {
-	IncidentTypesService!: () => [];
-
-	constructor() {
-		this.IncidentTypesService();
-	}
+class IncidentTypesService implements IIncidentTypesService {
+	api = `http://localhost:8000/incident-type`;
 
 	createIncidentType = async (
 		incidentType: IIncidentTypes
 	): Promise<IIncidentTypes> => {
 		try {
-			const response = await axios.post(
-				`${this.IncidentTypesService}/incident-type`,
-				incidentType
-			);
+			const response = await axios.post(`${this.api}`, incidentType);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -24,9 +18,7 @@ class IncidentTypesService {
 
 	getIncidentType = async (incidentTypeId: number): Promise<IIncidentTypes> => {
 		try {
-			const response = await axios.get(
-				`${this.IncidentTypesService}/incident-types/${incidentTypeId}`
-			);
+			const response = await axios.get(`${this.api}/${incidentTypeId}`);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -37,10 +29,7 @@ class IncidentTypesService {
 		incident: IIncidentTypes
 	): Promise<IIncidentTypes> => {
 		try {
-			const response = await axios.put(
-				`${this.IncidentTypesService}/incident-type/${incident.id}`,
-				incident
-			);
+			const response = await axios.put(`${this.api}/${incident.id}`, incident);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -49,19 +38,15 @@ class IncidentTypesService {
 
 	deleteIncidentType = async (incidentTypeId: number): Promise<void> => {
 		try {
-			await axios.delete(
-				`${this.IncidentTypesService}/incident-type/${incidentTypeId}`
-			);
+			await axios.delete(`${this.api}/${incidentTypeId}`);
 		} catch (error) {
 			throw error;
 		}
 	};
 
-	getAllRoles = async (): Promise<IIncidentTypes[]> => {
+	getAllIncidentTypes = async (): Promise<IIncidentTypes[]> => {
 		try {
-			const response = await axios.get(
-				`${this.IncidentTypesService}/incident-type`
-			);
+			const response = await axios.get(`${this.api}`);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -69,6 +54,6 @@ class IncidentTypesService {
 	};
 }
 
-const roleService = new IncidentTypesService();
+const incidentTypeService = new IncidentTypesService();
 
-export default IncidentTypesService;
+export default incidentTypeService;

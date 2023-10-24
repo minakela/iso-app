@@ -1,21 +1,15 @@
 import IIncidentStatus from '../../models/IIncidentStatuses';
 import axios from 'axios';
+import IIncidentStatusService from './IIncidentStatusService';
 
-class IncidentStatusService {
-	IncidentStatusService!: () => [];
-
-	constructor() {
-		this.IncidentStatusService();
-	}
+class IncidentStatusService implements IIncidentStatusService {
+	api = `http://localhost:8000/incident-status`;
 
 	createIncidentStatus = async (
 		incidentStatus: IIncidentStatus
 	): Promise<IIncidentStatus> => {
 		try {
-			const response = await axios.post(
-				`${this.IncidentStatusService}/incident-status`,
-				incidentStatus
-			);
+			const response = await axios.post(`${this.api}/`, incidentStatus);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -26,9 +20,7 @@ class IncidentStatusService {
 		incidentStatusId: number
 	): Promise<IIncidentStatus> => {
 		try {
-			const response = await axios.get(
-				`${this.IncidentStatusService}/incident-status/${incidentStatusId}`
-			);
+			const response = await axios.get(`${this.api}/${incidentStatusId}`);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -40,7 +32,7 @@ class IncidentStatusService {
 	): Promise<IIncidentStatus> => {
 		try {
 			const response = await axios.put(
-				`${this.IncidentStatusService}/incident-status/${incidentStatus.id}`,
+				`${this.api}/${incidentStatus.id}`,
 				incidentStatus
 			);
 			return response.data;
@@ -51,9 +43,7 @@ class IncidentStatusService {
 
 	deleteIncidentStatus = async (incidentStatusId: number): Promise<void> => {
 		try {
-			await axios.delete(
-				`${this.IncidentStatusService}/incident-status/${incidentStatusId}`
-			);
+			await axios.delete(`${this.api}/${incidentStatusId}`);
 		} catch (error) {
 			throw error;
 		}
@@ -61,9 +51,7 @@ class IncidentStatusService {
 
 	getAllIncidentStatus = async (): Promise<IIncidentStatus[]> => {
 		try {
-			const response = await axios.get(
-				`${this.IncidentStatusService}/incident-status`
-			);
+			const response = await axios.get(`${this.api}/`);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -73,4 +61,4 @@ class IncidentStatusService {
 
 const roleService = new IncidentStatusService();
 
-export default IncidentStatusService;
+export default roleService;

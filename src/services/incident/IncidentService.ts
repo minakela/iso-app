@@ -1,7 +1,8 @@
 import IIncident from '../../models/IIncidents';
 import axios from 'axios';
+import IIncidentService from './IIncidentService';
 
-class IncidentService {
+class IncidentService implements IIncidentService {
 	api = `http://localhost:8000/incident`;
 
 	createIncident = async (incident: IIncident): Promise<IIncident> => {
