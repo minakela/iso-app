@@ -1,0 +1,522 @@
+{
+	"role": [
+		{
+			"id": 1,
+			"roleName": "Administrator",
+			"modifiedBy": 1,
+			"createdBy": 1,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 2,
+			"roleName": "Employee",
+			"modifiedBy": 1,
+			"createdBy": 1,
+			"deletedBy": null,
+			"isDeleted": false
+		}
+	],
+	"user": [
+		{
+			"id": 1,
+			"firstName": "John",
+			"lastName": "Doe",
+			"email": "john.doe@example.com",
+			"passwordHash": "hashed_password_1",
+			"roleId": 2,
+			"modifiedBy": 3,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 2,
+			"firstName": "Alice",
+			"lastName": "Smith",
+			"email": "alice.smith@example.com",
+			"passwordHash": "hashed_password_2",
+			"roleId": 1,
+			"modifiedBy": 1,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 3,
+			"firstName": "Bob",
+			"lastName": "Johnson",
+			"email": "bob.johnson@example.com",
+			"passwordHash": "hashed_password_3",
+			"roleId": 3,
+			"modifiedBy": 2,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 4,
+			"firstName": "Eva",
+			"lastName": "Adams",
+			"email": "eva.adams@example.com",
+			"passwordHash": "hashed_password_4",
+			"roleId": 1,
+			"modifiedBy": 1,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": true
+		},
+		{
+			"id": 5,
+			"firstName": "Michael",
+			"lastName": "Wilson",
+			"email": "michael.wilson@example.com",
+			"passwordHash": "hashed_password_5",
+			"roleId": 2,
+			"modifiedBy": 3,
+			"createdBy": 2,
+			"deletedBy": 4,
+			"isDeleted": true
+		},
+		{
+			"id": 6,
+			"firstName": "Sarah",
+			"lastName": "Miller",
+			"email": "sarah.miller@example.com",
+			"passwordHash": "hashed_password_6",
+			"roleId": 2,
+			"modifiedBy": 2,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 7,
+			"firstName": "David",
+			"lastName": "Wilson",
+			"email": "david.wilson@example.com",
+			"passwordHash": "hashed_password_7",
+			"roleId": 1,
+			"modifiedBy": 1,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 8,
+			"firstName": "Linda",
+			"lastName": "Brown",
+			"email": "linda.brown@example.com",
+			"passwordHash": "hashed_password_8",
+			"roleId": 1,
+			"modifiedBy": 3,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 9,
+			"firstName": "James",
+			"lastName": "Roberts",
+			"email": "james.roberts@example.com",
+			"passwordHash": "hashed_password_9",
+			"roleId": 1,
+			"modifiedBy": 2,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": true
+		},
+		{
+			"id": 10,
+			"firstName": "Emily",
+			"lastName": "Jones",
+			"email": "emily.jones@example.com",
+			"passwordHash": "hashed_password_10",
+			"roleId": 2,
+			"modifiedBy": 1,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": true
+		},
+		{
+			"id": 11,
+			"firstName": "Michael",
+			"lastName": "Lee",
+			"email": "michael.lee@example.com",
+			"passwordHash": "hashed_password_11",
+			"roleId": 2,
+			"modifiedBy": 4,
+			"createdBy": 2,
+			"deletedBy": 3,
+			"isDeleted": false
+		},
+		{
+			"id": 12,
+			"firstName": "Olivia",
+			"lastName": "Davis",
+			"email": "olivia.davis@example.com",
+			"passwordHash": "hashed_password_12",
+			"roleId": 1,
+			"modifiedBy": 5,
+			"createdBy": 3,
+			"deletedBy": 2,
+			"isDeleted": false
+		},
+		{
+			"id": 13,
+			"firstName": "William",
+			"lastName": "Smith",
+			"email": "william.smith@example.com",
+			"passwordHash": "hashed_password_13",
+			"roleId": 1,
+			"modifiedBy": 2,
+			"createdBy": 1,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 14,
+			"firstName": "Sophia",
+			"lastName": "Clark",
+			"email": "sophia.clark@example.com",
+			"passwordHash": "hashed_password_14",
+			"roleId": 2,
+			"modifiedBy": 4,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": true
+		},
+		{
+			"id": 15,
+			"firstName": "Alexander",
+			"lastName": "Harris",
+			"email": "alexander.harris@example.com",
+			"passwordHash": "hashed_password_15",
+			"roleId": 3,
+			"modifiedBy": 3,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 16,
+			"firstName": "Ava",
+			"lastName": "Turner",
+			"email": "ava.turner@example.com",
+			"passwordHash": "hashed_password_16",
+			"roleId": 1,
+			"modifiedBy": 5,
+			"createdBy": 2,
+			"deletedBy": 1,
+			"isDeleted": true
+		},
+		{
+			"id": 17,
+			"firstName": "Logan",
+			"lastName": "White",
+			"email": "logan.white@example.com",
+			"passwordHash": "hashed_password_17",
+			"roleId": 4,
+			"modifiedBy": 4,
+			"createdBy": 1,
+			"deletedBy": 5,
+			"isDeleted": false
+		},
+		{
+			"id": 18,
+			"firstName": "Ella",
+			"lastName": "Martin",
+			"email": "ella.martin@example.com",
+			"passwordHash": "hashed_password_18",
+			"roleId": 2,
+			"modifiedBy": 1,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 19,
+			"firstName": "Lucas",
+			"lastName": "Garcia",
+			"email": "lucas.garcia@example.com",
+			"passwordHash": "hashed_password_19",
+			"roleId": 3,
+			"modifiedBy": 2,
+			"createdBy": 4,
+			"deletedBy": 3,
+			"isDeleted": false
+		},
+		{
+			"id": 20,
+			"firstName": "Mia",
+			"lastName": "Davis",
+			"email": "mia.davis@example.com",
+			"passwordHash": "hashed_password_20",
+			"roleId": 1,
+			"modifiedBy": 3,
+			"createdBy": 1,
+			"deletedBy": null,
+			"isDeleted": false
+		}
+	],
+	"incident-type": [
+		{
+			"id": 1,
+			"description": "Hardware Issue",
+			"modifiedBy": 3,
+			"createdBy": 2,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 2,
+			"description": "Software Issue",
+			"modifiedBy": 4,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 3,
+			"description": "Network Issue",
+			"modifiedBy": 1,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 4,
+			"description": "Access Request",
+			"modifiedBy": 2,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 5,
+			"description": "Hardware Failure",
+			"modifiedBy": 4,
+			"createdBy": 2,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 6,
+			"description": "Software Update",
+			"modifiedBy": 1,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 7,
+			"description": "Security Breach",
+			"modifiedBy": 3,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 8,
+			"description": "Data Loss",
+			"modifiedBy": 2,
+			"createdBy": 1,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 9,
+			"description": "Email Issue",
+			"modifiedBy": 5,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 10,
+			"description": "Hardware Upgrade",
+			"modifiedBy": 1,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": false
+		}
+	],
+	"incident-status": [
+		{
+			"id": 1,
+			"statusName": "New",
+			"modifiedBy": 3,
+			"createdBy": 2,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 2,
+			"statusName": "In Progress",
+			"modifiedBy": 4,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 3,
+			"statusName": "Resolved",
+			"modifiedBy": 1,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		}
+	],
+	"incident": [
+		{
+			"id": 1,
+			"description": "Network connectivity issue",
+			"reportedDate": "2023-10-15T10:30:00",
+			"reportedBy": 3,
+			"acceptedBy": 2,
+			"resolved": true,
+			"resolvedDate": "2023-10-16T14:45:00",
+			"statusId": 1,
+			"workPlace": "Office A",
+			"modifiedBy": 4,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 2,
+			"description": "Printer not working",
+			"reportedDate": "2023-10-16T13:15:00",
+			"reportedBy": 1,
+			"acceptedBy": 2,
+			"resolved": true,
+			"resolvedDate": "2023-10-17T09:20:00",
+			"statusId": 2,
+			"workPlace": "Office B",
+			"modifiedBy": 3,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 3,
+			"description": "Software installation request",
+			"reportedDate": "2023-10-18T08:45:00",
+			"reportedBy": 4,
+			"acceptedBy": 3,
+			"resolved": false,
+			"resolvedDate": null,
+			"statusId": 1,
+			"workPlace": "Office C",
+			"modifiedBy": 2,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 4,
+			"description": "Security access issue",
+			"reportedDate": "2023-10-19T15:20:00",
+			"reportedBy": 2,
+			"acceptedBy": 5,
+			"resolved": true,
+			"resolvedDate": "2023-10-20T11:10:00",
+			"statusId": 2,
+			"workPlace": "Office D",
+			"modifiedBy": 1,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 5,
+			"description": "Hardware malfunction",
+			"reportedDate": "2023-10-21T09:55:00",
+			"reportedBy": 5,
+			"acceptedBy": 1,
+			"resolved": false,
+			"resolvedDate": null,
+			"statusId": 3,
+			"workPlace": "Office E",
+			"modifiedBy": 3,
+			"createdBy": 2,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 6,
+			"description": "Software update request",
+			"reportedDate": "2023-10-22T11:30:00",
+			"reportedBy": 1,
+			"acceptedBy": 4,
+			"resolved": true,
+			"resolvedDate": "2023-10-23T08:15:00",
+			"statusId": 3,
+			"workPlace": "Office F",
+			"modifiedBy": 2,
+			"createdBy": 4,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 7,
+			"description": "Data backup request",
+			"reportedDate": "2023-10-24T14:20:00",
+			"reportedBy": 3,
+			"acceptedBy": 2,
+			"resolved": true,
+			"resolvedDate": "2023-10-25T10:45:00",
+			"statusId": 2,
+			"workPlace": "Office G",
+			"modifiedBy": 5,
+			"createdBy": 1,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 8,
+			"description": "Email configuration issue",
+			"reportedDate": "2023-10-26T09:10:00",
+			"reportedBy": 2,
+			"acceptedBy": 3,
+			"resolved": true,
+			"resolvedDate": "2023-10-27T14:30:00",
+			"statusId": 2,
+			"workPlace": "Office H",
+			"modifiedBy": 4,
+			"createdBy": 3,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 9,
+			"description": "Hardware upgrade request",
+			"reportedDate": "2023-10-28T13:50:00",
+			"reportedBy": 4,
+			"acceptedBy": 1,
+			"resolved": false,
+			"resolvedDate": null,
+			"statusId": 1,
+			"workPlace": "Office I",
+			"modifiedBy": 2,
+			"createdBy": 5,
+			"deletedBy": null,
+			"isDeleted": false
+		},
+		{
+			"id": 10,
+			"description": "Network security assessment",
+			"reportedDate": "2023-10-29T12:25:00",
+			"reportedBy": 1,
+			"acceptedBy": 5,
+			"resolved": true,
+			"resolvedDate": "2023-10-30T15:55:00",
+			"statusId": 2,
+			"workPlace": "Office J",
+			"modifiedBy": 3,
+			"createdBy": 2,
+			"deletedBy": null,
+			"isDeleted": false
+		}
+	]
+}

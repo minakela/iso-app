@@ -1,0 +1,18 @@
+[
+	{
+		"id": 1,
+		"roleName": "Administrator",
+		"modifiedBy": 1,
+		"createdBy": 1,
+		"deletedBy": null,
+		"isDeleted": false
+	},
+	{
+		"id": 2,
+		"roleName": "Employee",
+		"modifiedBy": 1,
+		"createdBy": 1,
+		"deletedBy": null,
+		"isDeleted": false
+	}
+]

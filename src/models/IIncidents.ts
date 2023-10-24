@@ -1,4 +1,5 @@
 import IUser from './IUsers';
+import IIncidentStatuses from './IIncidentStatuses';
 
 interface IIncidents {
 	id?: number;
@@ -8,7 +9,7 @@ interface IIncidents {
 	acceptedBy?: IUser;
 	resolved?: boolean;
 	resolvedDate?: Date | any;
-	statusId: number;
+	statusId: IIncidentStatuses;
 	workPlace: string;
 	modifiedBy: number;
 	createdBy: number;
