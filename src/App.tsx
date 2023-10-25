@@ -9,10 +9,7 @@ import IncidentsPage from './pages/incidentsPage/incidentsPage';
 import IncidentTypePage from './pages/incidentTypePage/incidentTypePage';
 import IncidentStatusPage from './pages/incidentStatusPage/incidentStatusPage';
 
-const links = [
-	{ href: '/login', label: 'Login' },
-	{ href: '/home', label: 'Home' },
-];
+const links = [{ href: '/home', label: 'Home' }];
 
 function App() {
 	const location = useLocation();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import incidentService from '../../services/incident/IncidentService';
 import IIncident from '../../models/IIncidents';
-import { Link } from 'react-router-dom';
+import Link from '../../common/link/link';
 
 const IncidentsPage = () => {
 	const [incidents, setIncidents] = useState<IIncident[]>([]);

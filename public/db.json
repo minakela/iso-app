@@ -344,7 +344,7 @@
 	"incident-status": [
 		{
 			"id": 1,
-			"statusName": "New",
+			"statusName": "Pending",
 			"modifiedBy": 3,
 			"createdBy": 2,
 			"deletedBy": null,
