@@ -9,7 +9,6 @@ const Modal: React.FunctionComponent<IModalProps> = ({
 }) => {
 	useEffect(() => {
 		setModalOpen(isOpen);
-		console.log('open');
 	}, [isOpen]);
 	const handleCloseModal = () => {
 		if (onClose) {

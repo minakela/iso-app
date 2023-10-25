@@ -26,10 +26,13 @@ class IncidentTypesService implements IIncidentTypesService {
 	};
 
 	updateIncidentType = async (
-		incident: IIncidentTypes
+		incidentType: IIncidentTypes
 	): Promise<IIncidentTypes> => {
 		try {
-			const response = await axios.put(`${this.api}/${incident.id}`, incident);
+			const response = await axios.put(
+				`${this.api}/${incidentType.id}`,
+				incidentType
+			);
 			return response.data;
 		} catch (error) {
 			throw error;
