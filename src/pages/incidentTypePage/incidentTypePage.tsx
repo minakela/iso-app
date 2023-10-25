@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import incidentService from '../../services/incident/IncidentService';
-import IIncident from '../../models/IIncidents';
+import incidentTypeService from '../../services/incidentTypes/IncidentTypesService';
+import IIncidentTypes from '../../models/IIncidentTypes';
 import { Link } from 'react-router-dom';
 
-const IncidentsPage = () => {
-	const [incidents, setIncidents] = useState<IIncident[]>([]);
+const IncidentTypePage = () => {
+	const [incidentType, setIncidentType] = useState<IIncidentTypes[]>([]);
 
-	const getAllIncidents = async () => {
-		const data = await incidentService.getAllIncidents();
-		setIncidents(data);
+	const getAllIncidentTypes = async () => {
+		const data = await incidentTypeService.getAllIncidentTypes();
+		setIncidentType(data);
 	};
 	useEffect(() => {
-		getAllIncidents();
+		getAllIncidentTypes();
 	}, []);
+
 	return (
 		<div>
 			<table className="table">
 				<tbody>
-					{incidents.map((incident) => (
-						<tr key={incident.id}>
+					{incidentType.map((incidentType) => (
+						<tr key={incidentType.id}>
 							<td>
-								<Link to={`/incident/${incident.id}`}>{incident.id}</Link>
+								<Link to={`/incident-type/${incidentType.id}`}>
+									{incidentType.id}
+								</Link>
 							</td>
-							<td>{incident.description}</td>
+							<td>{incidentType.description}</td>
 							<td>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -54,4 +57,4 @@ const IncidentsPage = () => {
 	);
 };
 
-export default IncidentsPage;
+export default IncidentTypePage;

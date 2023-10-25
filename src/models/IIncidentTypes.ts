@@ -1,5 +1,5 @@
 interface IIncidentTypes {
-	id: number;
+	id?: number;
 	description: string;
 	modifiedBy: number;
 	createdBy: number;

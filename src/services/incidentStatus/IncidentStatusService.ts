@@ -59,6 +59,6 @@ class IncidentStatusService implements IIncidentStatusService {
 	};
 }
 
-const roleService = new IncidentStatusService();
+const incidentStatusService = new IncidentStatusService();
 
-export default roleService;
+export default incidentStatusService;
