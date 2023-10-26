@@ -18,11 +18,16 @@ const IncidentTypePage = () => {
 		<div>
 			<table className="table">
 				<tbody>
+					<tr>
+						<th>Rbr</th>
+						<th>Incident</th>
+						<th>Age</th>
+					</tr>
 					{incidentType.map((incidentType) => (
 						<tr key={incidentType.id}>
 							<td>
 								<Link to={`/incident-type/${incidentType.id}`}>
-									{incidentType.id}
+									{incidentType.serialNumber}
 								</Link>
 							</td>
 							<td>{incidentType.description}</td>

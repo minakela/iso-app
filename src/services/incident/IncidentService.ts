@@ -13,7 +13,6 @@ class IncidentService implements IIncidentService {
 			throw error;
 		}
 	};
-
 	getIncident = async (incidentId: number): Promise<IIncident> => {
 		try {
 			const response = await axios.get(`${this.api}/${incidentId}`);
@@ -22,7 +21,6 @@ class IncidentService implements IIncidentService {
 			throw error;
 		}
 	};
-
 	updateIncident = async (incident: IIncident): Promise<IIncident> => {
 		try {
 			const response = await axios.put(`${this.api}/${incident.id}`, incident);
@@ -35,6 +33,20 @@ class IncidentService implements IIncidentService {
 	deleteIncident = async (incidentId: number): Promise<void> => {
 		try {
 			await axios.delete(`${this.api}/${incidentId}`);
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	getAllIncidentsPerPage = async (
+		limit: number,
+		page: number
+	): Promise<IIncident[]> => {
+		try {
+			const response = await axios.get(
+				`${this.api}?_limit=${limit}&_page=${page}`
+			);
+			return response.data;
 		} catch (error) {
 			throw error;
 		}

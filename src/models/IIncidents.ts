@@ -2,7 +2,8 @@ import IUser from './IUsers';
 import IIncidentStatuses from './IIncidentStatuses';
 
 interface IIncidents {
-	id?: number;
+	id: number;
+	serialNumber?: string;
 	description?: string;
 	reportedDate?: Date | any;
 	reportedBy?: IUser;
@@ -11,9 +12,9 @@ interface IIncidents {
 	resolvedDate?: Date | any;
 	statusId: IIncidentStatuses;
 	workPlace: string;
-	modifiedBy: number;
-	createdBy: number;
-	deletedBy: number;
+	modifiedBy: IUser;
+	createdBy: IUser;
+	deletedBy: IUser;
 	isDeleted: boolean;
 }
 

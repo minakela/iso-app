@@ -6,4 +6,5 @@ export default interface IIncidentService {
 	updateIncident: (incident: IIncident) => Promise<IIncident>;
 	deleteIncident: (incidentId: number) => Promise<void>;
 	getAllIncidents: () => Promise<IIncident[]>;
+	getAllIncidentsPerPage: (limit: number, page: number) => Promise<IIncident[]>;
 }

@@ -1,5 +1,6 @@
 interface IIncidentTypes {
 	id?: number;
+	serialNumber: number;
 	description: string;
 	modifiedBy: number;
 	createdBy: number;

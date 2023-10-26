@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './header.module.css';
 import IHeader from './IHeader';
-import { Link } from 'react-router-dom';
+import Link from '../../common/link/link';
 
 const Header: React.FunctionComponent<IHeader> = ({ links }) => {
 	const linkStyle = {
@@ -11,8 +11,10 @@ const Header: React.FunctionComponent<IHeader> = ({ links }) => {
 	};
 	return (
 		<div className={css['header-container']}>
-			<img src="/assets/img/TiacLogo.png" alt="TiacLogo" title="Tiac" />
-			<h1>Tiac ISO issue service</h1>
+			<div>
+				<img src="/assets/img/TiacLogo.png" alt="TiacLogo" title="Tiac" />
+				<h1>Tiac ISO issue service</h1>
+			</div>
 			<ul>
 				{links.map((link) => (
 					<li key={link.label}>

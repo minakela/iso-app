@@ -9,7 +9,12 @@ import IncidentsPage from './pages/incidentsPage/incidentsPage';
 import IncidentTypePage from './pages/incidentTypePage/incidentTypePage';
 import IncidentStatusPage from './pages/incidentStatusPage/incidentStatusPage';
 
-const links = [{ href: '/home', label: 'Home' }];
+const links = [
+	{ href: '/home', label: 'Home' },
+	{ href: '/incidents', label: 'Incidents' },
+	{ href: '/incident-type', label: 'Incident type' },
+	{ href: '/incident-status', label: 'Incident status' },
+];
 
 function App() {
 	const location = useLocation();
