@@ -1,3 +1,7 @@
 {
-	"test": "Incident Reporting System"
+	"test": "Incident Reporting System",
+	"incident": {
+		"id": "ID",
+		"createdBy": "Created By"
+	}
 }

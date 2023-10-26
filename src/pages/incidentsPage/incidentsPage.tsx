@@ -1,55 +1,107 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import incidentService from '../../services/incident/IncidentService';
 import IIncident from '../../models/IIncidents';
 import Link from '../../common/link/link';
+import IsoButton from '../../common/button/isoButton';
 
 const IncidentsPage = () => {
+	const { t } = useTranslation('common');
 	const [incidents, setIncidents] = useState<IIncident[]>([]);
-
-	const getAllIncidents = async () => {
-		const data = await incidentService.getAllIncidents();
+	const [numOfPages, setNumOfPages] = useState<number>(0);
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const perPage = 5;
+	const getAllIncidentsPerPage = async () => {
+		const data = await incidentService.getAllIncidentsPerPage(
+			perPage,
+			currentPage
+		);
 		setIncidents(data);
 	};
 	useEffect(() => {
+		getAllIncidentsPerPage();
+	}, [currentPage]);
+
+	const getAllIncidents = async () => {
+		const data = await incidentService.getAllIncidents();
+		setNumOfPages(Math.round(data.length / perPage));
+	};
+
+	useEffect(() => {
 		getAllIncidents();
 	}, []);
+
+	const getFullName = (firstName: string, lastName: string) =>
+		`${firstName} ${lastName}`;
+
+	const editIncident = (id: number) => {};
+	const deleteIncident = async (id: number) => {
+		const response = await incidentService.deleteIncident(id);
+		console.log(response);
+	};
+
+	const renderPagination = () => {
+		const buttons = [];
+		for (let i = 0; i < numOfPages; i++) {
+			buttons.push(
+				<IsoButton
+					key={i}
+					name={`${i + 1}`}
+					onClick={() => {
+						setCurrentPage(i + 1);
+					}}
+				/>
+			);
+		}
+		return buttons;
+	};
 	return (
 		<div>
 			<table className="table">
+				<thead>
+					<tr>
+						<th>{t('incident.id')}</th>
+						<th>{t('incident.createdBy')}</th>
+					</tr>
+				</thead>
 				<tbody>
 					{incidents.map((incident) => (
 						<tr key={incident.id}>
 							<td>
-								<Link to={`/incident/${incident.id}`}>{incident.id}</Link>
+								<Link to={`/incident/${incident.id}`}>
+									{incident.serialNumber}
+								</Link>
 							</td>
 							<td>{incident.description}</td>
+							<td>{new Date(incident.reportedDate).getFullYear()}</td>
 							<td>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									className="bi bi-pencil"
-									viewBox="0 0 16 16">
-									<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-								</svg>
+								{getFullName(
+									incident.createdBy.firstName,
+									incident.createdBy.lastName
+								) || 'Unknown User'}
 							</td>
 							<td>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									color="red"
-									fill="currentColor"
-									className="bi bi-trash-fill"
-									viewBox="0 0 16 16">
-									<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-								</svg>
+								{incident.resolvedDate
+									? new Date(incident.resolvedDate).getFullYear()
+									: 'Not resolved'}
+							</td>
+							<td>
+								<IsoButton
+									name="Edit"
+									onClick={() => editIncident(incident.id)}
+								/>
+							</td>
+							<td>
+								<IsoButton
+									name="Delete"
+									onClick={() => deleteIncident(incident.id)}
+								/>
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
+			<div>{renderPagination()}</div>
 		</div>
 	);
 };

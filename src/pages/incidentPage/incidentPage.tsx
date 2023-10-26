@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import incidentService from '../../services/incident/IncidentService';
 import IIncidents from '../../models/IIncidents';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const IncidentsPage = () => {
 	const [incident, setIncident] = useState<IIncidents>();
@@ -18,7 +18,7 @@ const IncidentsPage = () => {
 			<table>
 				<tbody>
 					<tr key={incident?.id}>
-						<td>{incident?.id}</td>
+						<td>{incident?.serialNumber}</td>
 						<td>{incident?.description}</td>
 					</tr>
 				</tbody>
@@ -26,5 +26,4 @@ const IncidentsPage = () => {
 		</div>
 	);
 };
-
 export default IncidentsPage;

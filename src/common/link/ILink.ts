@@ -1,7 +1,6 @@
-import { JsxAttribute, JsxChild } from 'typescript';
-
 interface ILink {
 	to: string;
+	style?: React.CSSProperties;
 	children: React.ReactNode;
 }
 

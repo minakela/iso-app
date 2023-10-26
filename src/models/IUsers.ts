@@ -12,4 +12,4 @@ interface IUser {
 	deletedBy: number;
 	isDeleted: boolean;
 }
-export default IRole;
+export default IUser;

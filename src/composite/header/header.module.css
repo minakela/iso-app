@@ -7,6 +7,9 @@
 	justify-content: space-between;
 	height: auto;
 }
+.header-container div {
+	display: flex;
+}
 img {
 	border-radius: 25px;
 	height: 55px;
