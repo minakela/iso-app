@@ -9,7 +9,7 @@ const Input: React.FunctionComponent<IInput> = ({
 	onChange,
 }) => {
 	return (
-		<div className="input-container">
+		<div>
 			<span>{name}</span>
 			<input
 				type={type}

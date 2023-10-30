@@ -1,10 +1,7 @@
-interface IRole {
-	id: number;
+import IBaseEntity from './IBaseEntity';
+
+interface IRole extends IBaseEntity<number> {
 	roleName: string;
-	modifiedBy: number;
-	createdBy: number;
-	deletedBy: number;
-	isDeleted: boolean;
 }
 
 export default IRole;

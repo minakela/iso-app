@@ -1,6 +1,7 @@
 import IIncident from '../../models/IIncidents';
 import axios from 'axios';
 import IIncidentService from './IIncidentService';
+import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 
 class IncidentService implements IIncidentService {
 	api = `http://localhost:8000/incident`;
@@ -21,7 +22,7 @@ class IncidentService implements IIncidentService {
 			throw error;
 		}
 	};
-	updateIncident = async (incident: IIncident): Promise<IIncident> => {
+	updateIncident = async (incident: IIncidentsDTO): Promise<IIncident> => {
 		try {
 			const response = await axios.put(`${this.api}/${incident.id}`, incident);
 			return response.data;

@@ -1,58 +1,81 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import IIncidentStatuses from '../../models/IIncidentStatuses';
 import incidentStatusService from '../../services/incidentStatus/IncidentStatusService';
+import Pagination from '../../composite/paginator/paginator';
+import css from '../incidentsPage/incidentsPage.module.css';
+import Button from '../../common/button/button';
 
 const IncidentStatusPage = () => {
+	const { t } = useTranslation('common');
 	const [incidentStatus, setIncidentStatus] = useState<IIncidentStatuses[]>([]);
+	const [numOfPages, setNumOfPages] = useState<number>(0);
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const perPage = 5;
+
+	const getAllIncidentStatusesPerPage = async () => {
+		const data = await incidentStatusService.getAllIncidentStatusesPerPage(
+			perPage,
+			currentPage
+		);
+		setIncidentStatus(data);
+	};
+
+	useEffect(() => {
+		getAllIncidentStatusesPerPage();
+	}, [currentPage]);
 
 	const getAllIncidentStatus = async () => {
 		const data = await incidentStatusService.getAllIncidentStatus();
-		setIncidentStatus(data);
+		setNumOfPages(Math.round(data.length / perPage));
 	};
 	useEffect(() => {
 		getAllIncidentStatus();
 	}, []);
 
+	const editIncidentStatus = (id: number) => {};
+	const deleteIncidentStatus = async (id: number) => {
+		await incidentStatusService.deleteIncidentStatus(id);
+	};
 	return (
-		<div>
+		<div className={css['page-container']}>
 			<table className="table">
+				<thead>
+					<tr>
+						<td>{t('incidentStatus.id')}</td>
+						<td>{t('incidentStatus.name')}</td>
+						<td>{t('incidentStatus.edit')}</td>
+						<td>{t('incidentStatus.delete')}</td>
+					</tr>
+				</thead>
 				<tbody>
 					{incidentStatus.map((incidentStatus) => (
 						<tr key={incidentStatus.id}>
-							<td>
-								<Link to={`/incident-type/${incidentStatus.id}`}>
-									{incidentStatus.serialNumber}
-								</Link>
-							</td>
+							<td>{incidentStatus.serialNumber}</td>
 							<td>{incidentStatus.statusName}</td>
 							<td>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									className="bi bi-pencil"
-									viewBox="0 0 16 16">
-									<path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-								</svg>
+								<Button
+									name={t('button.edit')}
+									onClick={() => editIncidentStatus(incidentStatus.id)}
+								/>
 							</td>
 							<td>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									color="red"
-									fill="currentColor"
-									className="bi bi-trash-fill"
-									viewBox="0 0 16 16">
-									<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-								</svg>
+								<Button
+									name={t('button.delete')}
+									onClick={() => deleteIncidentStatus(incidentStatus.id)}
+								/>
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
+			<div>
+				<Pagination
+					currentPage={currentPage}
+					numOfPages={numOfPages}
+					onPageChange={(newPage) => setCurrentPage(newPage)}
+				/>
+			</div>
 		</div>
 	);
 };

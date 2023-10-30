@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import IModalProps from './IModalProps';
+import css from './modalStyle.module.css';
 
 const Modal: React.FunctionComponent<IModalProps> = ({
 	isOpen,
-	hasCloseBtn,
 	onClose,
+	hasCloseBtn,
 	children,
 }) => {
-	useEffect(() => {
-		setModalOpen(isOpen);
-	}, [isOpen]);
 	const handleCloseModal = () => {
 		if (onClose) {
 			onClose();
@@ -23,16 +21,25 @@ const Modal: React.FunctionComponent<IModalProps> = ({
 	};
 	const [isModalOpen, setModalOpen] = useState(isOpen);
 	const modalRef = useRef<HTMLDialogElement | null>(null);
+	useEffect(() => {
+		setModalOpen(isOpen);
+	}, [isOpen]);
 
 	return (
-		<dialog open={isModalOpen} ref={modalRef} onKeyDown={handleKeyDown}>
-			{hasCloseBtn && (
-				<button className="modal-close-btn" onClick={handleCloseModal}>
-					Close
-				</button>
-			)}
-			{children}
-		</dialog>
+		<div className={css['overlay']}>
+			<dialog
+				open={isModalOpen}
+				ref={modalRef}
+				onKeyDown={handleKeyDown}
+				className={css['modal']}>
+				{hasCloseBtn && (
+					<button className={css['modal-close-btn']} onClick={handleCloseModal}>
+						Close
+					</button>
+				)}
+				{children}
+			</dialog>
+		</div>
 	);
 };
 
