@@ -1,0 +1,12 @@
+.page-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+@media only screen and(max-width: 900px) {
+	.page-container {
+		width: 100%;
+		height: auto;
+	}
+}

@@ -2,14 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import incidentService from '../../services/incident/IncidentService';
 import IIncident from '../../models/IIncidents';
-import Link from '../../common/link/link';
-import IsoButton from '../../common/button/isoButton';
+import Pagination from '../../composite/paginator/paginator';
+import css from './incidentsPage.module.css';
+import Modal from '../../composite/dialogBox/Modal';
+import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
+import IncidentForm from '../../composite/incidentForm/incidentForm';
+import Button from '../../common/button/button';
 
 const IncidentsPage = () => {
 	const { t } = useTranslation('common');
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [incidents, setIncidents] = useState<IIncident[]>([]);
 	const [numOfPages, setNumOfPages] = useState<number>(0);
 	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [incident, setIncident] = useState<IIncident>();
 	const perPage = 5;
 	const getAllIncidentsPerPage = async () => {
 		const data = await incidentService.getAllIncidentsPerPage(
@@ -18,6 +24,7 @@ const IncidentsPage = () => {
 		);
 		setIncidents(data);
 	};
+
 	useEffect(() => {
 		getAllIncidentsPerPage();
 	}, [currentPage]);
@@ -31,69 +38,73 @@ const IncidentsPage = () => {
 		getAllIncidents();
 	}, []);
 
-	const getFullName = (firstName: string, lastName: string) =>
-		`${firstName} ${lastName}`;
-
-	const editIncident = (id: number) => {};
+	const editIncident = async (id: number) => {
+		setIsModalOpen(true);
+		const getIncident = await incidentService.getIncident(id);
+		console.log(getIncident);
+		setIncident(getIncident);
+	};
 	const deleteIncident = async (id: number) => {
-		const response = await incidentService.deleteIncident(id);
-		console.log(response);
+		await incidentService.deleteIncident(id);
 	};
 
-	const renderPagination = () => {
-		const buttons = [];
-		for (let i = 0; i < numOfPages; i++) {
-			buttons.push(
-				<IsoButton
-					key={i}
-					name={`${i + 1}`}
-					onClick={() => {
-						setCurrentPage(i + 1);
-					}}
-				/>
-			);
-		}
-		return buttons;
+	const onIncidentEdit = async (incident: IIncidentsDTO) => {
+		await incidentService.updateIncident(incident);
+		setIsModalOpen(false);
+		setIncident(undefined);
 	};
+
 	return (
-		<div>
+		<div className={css['page-container']}>
 			<table className="table">
 				<thead>
 					<tr>
 						<th>{t('incident.id')}</th>
+						<th>{t('incident.incident')}</th>
+						<th>{t('incident.reportedDate')}</th>
 						<th>{t('incident.createdBy')}</th>
+						<th>{t('incident.resolvedDate')}</th>
+						<th>{t('incident.edit')}</th>
+						<th>{t('incident.delete')}</th>
 					</tr>
 				</thead>
 				<tbody>
 					{incidents.map((incident) => (
 						<tr key={incident.id}>
-							<td>
-								<Link to={`/incident/${incident.id}`}>
-									{incident.serialNumber}
-								</Link>
-							</td>
+							<td>{incident.serialNumber}</td>
 							<td>{incident.description}</td>
-							<td>{new Date(incident.reportedDate).getFullYear()}</td>
 							<td>
-								{getFullName(
-									incident.createdBy.firstName,
-									incident.createdBy.lastName
-								) || 'Unknown User'}
+								{new Date(incident.reportedDate).toLocaleDateString(
+									'sr-Latn-RS',
+									{
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric',
+									}
+								)}
 							</td>
+							<td>{incident.modifiedBy}</td>
 							<td>
 								{incident.resolvedDate
-									? new Date(incident.resolvedDate).getFullYear()
+									? new Date(incident.resolvedDate).toLocaleDateString(
+											'en-RS',
+											{
+												year: 'numeric',
+												month: 'long',
+												day: 'numeric',
+											}
+									  )
 									: 'Not resolved'}
 							</td>
 							<td>
-								<IsoButton
-									name="Edit"
+								<Button
+									name={t('button.edit')}
 									onClick={() => editIncident(incident.id)}
 								/>
 							</td>
 							<td>
-								<IsoButton
-									name="Delete"
+								<Button
+									name={t('button.delete')}
 									onClick={() => deleteIncident(incident.id)}
 								/>
 							</td>
@@ -101,7 +112,21 @@ const IncidentsPage = () => {
 					))}
 				</tbody>
 			</table>
-			<div>{renderPagination()}</div>
+			<div className={css['pagination-container']}>
+				<Pagination
+					currentPage={currentPage}
+					numOfPages={numOfPages}
+					onPageChange={(newPage) => setCurrentPage(newPage)}
+				/>
+			</div>
+			<Modal
+				isOpen={isModalOpen}
+				hasCloseBtn={true}
+				onClose={() => setIsModalOpen(false)}>
+				{incident && (
+					<IncidentForm incident={incident} onSave={onIncidentEdit} />
+				)}
+			</Modal>
 		</div>
 	);
 };

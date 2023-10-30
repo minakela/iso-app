@@ -55,6 +55,19 @@ class IncidentTypesService implements IIncidentTypesService {
 			throw error;
 		}
 	};
+	getAllIncidentTypesPerPage = async (
+		limit: number,
+		page: number
+	): Promise<IIncidentTypes[]> => {
+		try {
+			const response = await axios.get(
+				`${this.api}?_limit=${limit}&_page=${page}`
+			);
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	};
 }
 
 const incidentTypeService = new IncidentTypesService();

@@ -1,42 +1,33 @@
 import React from 'react';
-import IsoButton from '../../common/button/isoButton';
 import { useTranslation } from 'react-i18next';
+import css from './homeStyle.module.css';
+import Button from '../../common/button/button';
 
-const homePageStyle = {
-	display: 'flex',
-	justifyContent: 'center',
-	alignItems: 'center',
-};
 const HomePage = () => {
 	const { t } = useTranslation('common');
 	return (
 		<div className="container mt-5">
 			<div className="row">
 				<div className="col-md-8 offset-md-2">
-					<h1 className="mb-4 text-center">{t('test')}</h1>
+					<h1 className="mb-4 text-center">{t('homePage-h1')}</h1>
 					<div className="card mb-4 mt-5">
-						<div className="card" style={homePageStyle}>
+						<div className="card">
 							<div className="card-body">
-								According to the International Labour Organization, more than 7
-								600 people die from work-related accidents or diseases every
-								single day. Thats why an ISO committee of occupational health &
-								safety experts set to work to develop an International Standard
-								with the potential to save almost three million lives each year.
+								<p>{t('homePage-rules.rule1')}</p>
+								<p>{t('homePage-rules.rule2')}</p>
+								<p>{t('homePage-rules.rule3')}</p>
+								<p>{t('homePage-rules.rule4')}</p>
 							</div>
-							<div style={homePageStyle}>
-								<IsoButton
-									name="Report an accident"
+							<div className={css['button-container']}>
+								<Button
+									name={t('button.report')}
 									isHidden={false}
-									onClick={() => {
-										console.log('Report an accident');
-									}}
+									onClick={() => {}}
 								/>
-								<IsoButton
-									name="Review as admin"
+								<Button
+									name={t('button.review')}
 									isHidden={false}
-									onClick={() => {
-										console.log('Review as admin');
-									}}
+									onClick={() => {}}
 								/>
 							</div>
 						</div>

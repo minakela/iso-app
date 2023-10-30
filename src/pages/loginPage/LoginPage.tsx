@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import IsoButton from '../../common/button/isoButton';
 import Input from '../../common/input/Input';
 import css from './loginStyle.module.css';
+import { useTranslation } from 'react-i18next';
+import Button from '../../common/button/button';
 
 const Login: React.FunctionComponent = () => {
+	const { t } = useTranslation('common');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
 	return (
 		<div className={css.login}>
 			<Input
@@ -26,13 +29,7 @@ const Login: React.FunctionComponent = () => {
 					setPassword(event.target.value);
 				}}
 			/>
-			<IsoButton
-				name="Login"
-				isHidden={false}
-				onClick={() => {
-					console.log('login', email, password);
-				}}
-			/>
+			<Button name={t('button.login')} isHidden={false} onClick={() => {}} />
 		</div>
 	);
 };

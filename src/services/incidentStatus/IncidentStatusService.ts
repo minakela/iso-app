@@ -57,6 +57,19 @@ class IncidentStatusService implements IIncidentStatusService {
 			throw error;
 		}
 	};
+	getAllIncidentStatusesPerPage = async (
+		limit: number,
+		page: number
+	): Promise<IIncidentStatus[]> => {
+		try {
+			const response = await axios.get(
+				`${this.api}?_limit=${limit}&_page=${page}`
+			);
+			return response.data;
+		} catch (error) {
+			throw error;
+		}
+	};
 }
 
 const incidentStatusService = new IncidentStatusService();

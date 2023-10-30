@@ -6,6 +6,8 @@
 	padding: 4px;
 	justify-content: space-between;
 	height: auto;
+	left: 0;
+	top: 0;
 }
 .header-container div {
 	display: flex;
@@ -31,4 +33,17 @@ img {
 }
 h1 {
 	margin-left: 10px;
+}
+@media only screen and (max-width: 900px) {
+	.header-container {
+		width: 100%;
+		right: 0;
+	}
+	.header-container div h1 {
+		display: none;
+	}
+	ul {
+		padding: 4px 6px;
+		font-size: 14px;
+	}
 }

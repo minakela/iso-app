@@ -1,11 +1,8 @@
-interface IIncidentStatuses {
-	id: number;
+import IBaseEntity from './IBaseEntity';
+
+interface IIncidentStatuses extends IBaseEntity<number> {
 	serialNumber: number;
 	statusName: string;
-	modifiedBy: number;
-	createdBy: number;
-	deletedBy: number;
-	isDeleted: boolean;
 }
 
 export default IIncidentStatuses;

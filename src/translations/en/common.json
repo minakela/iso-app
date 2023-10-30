@@ -1,7 +1,39 @@
 {
-	"test": "Incident Reporting System",
+	"homePage-h1": "Rules",
+	"homePage-rules": {
+		"rule1": "1. Provide Accurate Information: Ensure that the information you provide in the incident report is accurate and complete to the best of your knowledge.",
+		"rule2": "2. Choose the Right Category: Select the appropriate category for the incident report. Categorizing the incident correctly helps in its timely resolution.",
+		"rule3": "3. Include Detailed Description: Describe the incident in detail, including when, where, and how it occurred. Be specific and avoid vague language.",
+		"rule4": "4. Avoid Duplications: Check if the incident has already been reported to avoid duplication. If it has, you can add additional information to the existing report."
+	},
+	"incidentType": {
+		"id": "ID",
+		"name": "Name",
+		"edit": "Edit",
+		"delete": "Delete"
+	},
 	"incident": {
 		"id": "ID",
-		"createdBy": "Created By"
+		"incident": "Incident",
+		"reportedDate": "Reported date",
+		"createdBy": "Created By",
+		"resolvedDate": "Resolved date",
+		"edit": "Edit",
+		"delete": "Delete"
+	},
+	"incidentStatus": {
+		"id": "ID",
+		"name": "Name",
+		"edit": "Edit",
+		"delete": "Delete"
+	},
+	"button": {
+		"close": "Close",
+		"open": "Open",
+		"delete": "Delete",
+		"report": "Report an accident",
+		"login": "Login",
+		"review": "Review as admin",
+		"edit": "Edit"
 	}
 }

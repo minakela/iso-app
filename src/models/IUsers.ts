@@ -1,15 +1,11 @@
+import IBaseEntity from './IBaseEntity';
 import IRole from './IRole';
 
-interface IUser {
-	id: number;
+interface IUser extends IBaseEntity<number> {
 	firstName: string;
 	lastName: string;
 	email: string;
 	passwordHash: string;
 	roleId: IRole;
-	modifiedBy: number;
-	createdBy: number;
-	deletedBy: number;
-	isDeleted: boolean;
 }
 export default IUser;
