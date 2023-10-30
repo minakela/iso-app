@@ -41,7 +41,6 @@ const IncidentsPage = () => {
 	const editIncident = async (id: number) => {
 		setIsModalOpen(true);
 		const getIncident = await incidentService.getIncident(id);
-		console.log(getIncident);
 		setIncident(getIncident);
 	};
 	const deleteIncident = async (id: number) => {
@@ -59,7 +58,7 @@ const IncidentsPage = () => {
 			<table className="table">
 				<thead>
 					<tr>
-						<th>{t('incident.id')}</th>
+						<th>{t('incident.serialNumber')}</th>
 						<th>{t('incident.incident')}</th>
 						<th>{t('incident.reportedDate')}</th>
 						<th>{t('incident.createdBy')}</th>
@@ -74,14 +73,11 @@ const IncidentsPage = () => {
 							<td>{incident.serialNumber}</td>
 							<td>{incident.description}</td>
 							<td>
-								{new Date(incident.reportedDate).toLocaleDateString(
-									'sr-Latn-RS',
-									{
-										year: 'numeric',
-										month: 'long',
-										day: 'numeric',
-									}
-								)}
+								{new Date(incident.reportedDate).toLocaleDateString('en-RS', {
+									year: 'numeric',
+									month: 'long',
+									day: 'numeric',
+								})}
 							</td>
 							<td>{incident.modifiedBy}</td>
 							<td>

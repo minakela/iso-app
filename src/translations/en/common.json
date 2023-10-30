@@ -7,13 +7,13 @@
 		"rule4": "4. Avoid Duplications: Check if the incident has already been reported to avoid duplication. If it has, you can add additional information to the existing report."
 	},
 	"incidentType": {
-		"id": "ID",
-		"name": "Name",
+		"serialNumber": "Serial number",
+		"name": "Type name",
 		"edit": "Edit",
 		"delete": "Delete"
 	},
 	"incident": {
-		"id": "ID",
+		"serialNumber": "Serial number",
 		"incident": "Incident",
 		"reportedDate": "Reported date",
 		"createdBy": "Created By",
@@ -22,8 +22,8 @@
 		"delete": "Delete"
 	},
 	"incidentStatus": {
-		"id": "ID",
-		"name": "Name",
+		"serialNumber": "Serial number",
+		"name": "Status name",
 		"edit": "Edit",
 		"delete": "Delete"
 	},

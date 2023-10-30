@@ -3,6 +3,7 @@ import Input from '../../common/input/Input';
 import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 import IIncidentForm from './IIncidentForm';
 import Button from '../../common/button/button';
+import Dropdown from '../../common/dropdown/Dropdown';
 
 const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 	incident,
@@ -17,21 +18,20 @@ const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 	});
 
 	useEffect(() => {
-		debugger;
 		setIncidentDetails({
 			id: incident.id,
 			serialNumber: incident.serialNumber,
 			description: incident.description,
 			reportedDate: incident.reportedDate,
-			reportedBy: incident.reportedBy.id,
+			reportedBy: incident.reportedBy,
 			modifiedBy: incident.modifiedBy,
 			createdBy: incident.createdBy,
-			acceptedBy: incident.acceptedBy.id,
+			acceptedBy: incident.acceptedBy,
 			deletedBy: incident.deletedBy,
 			isDeleted: incident.isDeleted,
 			resolved: incident.resolved,
 			resolvedDate: incident.resolvedDate,
-			statusId: incident.statusId.id,
+			statusId: incident.statusId,
 			workPlace: incident.workPlace,
 		});
 	}, [incident]);
@@ -54,12 +54,26 @@ const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 				type="text"
 				value={incidentDetails?.description}
 				placeholder="Description"
-				onChange={(e) =>
+				onChange={(e) => {
+					debugger;
 					setIncidentDetails({
 						...incidentDetails,
 						description: e.target.value,
-					})
-				}
+					});
+				}}
+			/>
+			<Input
+				name="Work place"
+				type="text"
+				value={incidentDetails?.workPlace}
+				placeholder="Work place"
+				onChange={(e) => {
+					debugger;
+					setIncidentDetails({
+						...incidentDetails,
+						workPlace: e.target.value,
+					});
+				}}
 			/>
 
 			<Button name="Save" onClick={() => onSave(incidentDetails)} />

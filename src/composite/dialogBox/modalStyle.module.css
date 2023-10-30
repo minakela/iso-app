@@ -9,10 +9,14 @@ dialog {
 	box-shadow: 0 0 0.5rem 0.25rem hsl(0 0% 0% / 10%);
 }
 .modal-close-btn {
-	font-size: 0.75em;
+	font-size: 12px;
 	position: absolute;
 	top: 0.25em;
 	right: 0.25em;
+	width: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .overlay {
 	display: flex;

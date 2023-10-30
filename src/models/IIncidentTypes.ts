@@ -1,7 +1,7 @@
 import IBaseEntity from './IBaseEntity';
 
 interface IIncidentTypes extends IBaseEntity<number> {
-	serialNumber: number;
-	description: string;
+	serialNumber: number | string;
+	name: string;
 }
 export default IIncidentTypes;
