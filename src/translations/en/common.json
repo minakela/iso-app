@@ -6,6 +6,7 @@
 		"rule3": "3. Include Detailed Description: Describe the incident in detail, including when, where, and how it occurred. Be specific and avoid vague language.",
 		"rule4": "4. Avoid Duplications: Check if the incident has already been reported to avoid duplication. If it has, you can add additional information to the existing report."
 	},
+	"header": { "h1": "Tiac ISO issue service" },
 	"incidentType": {
 		"serialNumber": "Serial number",
 		"name": "Type name",
@@ -34,6 +35,7 @@
 		"report": "Report an accident",
 		"login": "Login",
 		"review": "Review as admin",
-		"edit": "Edit"
+		"edit": "Edit",
+		"logout": "Logout"
 	}
 }

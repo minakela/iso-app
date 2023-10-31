@@ -16,7 +16,7 @@ const IncidentsPage = () => {
 	const [numOfPages, setNumOfPages] = useState<number>(0);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [incident, setIncident] = useState<IIncident>();
-	const perPage = 5;
+	const perPage = 7;
 	const getAllIncidentsPerPage = async () => {
 		const data = await incidentService.getAllIncidentsPerPage(
 			perPage,
@@ -120,7 +120,9 @@ const IncidentsPage = () => {
 				hasCloseBtn={true}
 				onClose={() => setIsModalOpen(false)}>
 				{incident && (
-					<IncidentForm incident={incident} onSave={onIncidentEdit} />
+					<div className={css['modal-content']}>
+						<IncidentForm incident={incident} onSave={onIncidentEdit} />
+					</div>
 				)}
 			</Modal>
 		</div>

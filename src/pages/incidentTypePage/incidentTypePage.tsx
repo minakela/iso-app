@@ -41,7 +41,8 @@ const IncidentTypePage = () => {
 		setIncident(getIncident);
 	};
 	const deleteIncidentType = async (id: number) => {
-		const response = await incidentTypeService.deleteIncidentType(id);
+		// const response =
+		await incidentTypeService.deleteIncidentType(id);
 	};
 	const onIncidentEdit = async (incident: IIncidentTypes) => {
 		await incidentTypeService.updateIncidentType(incident);

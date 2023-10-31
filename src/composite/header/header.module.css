@@ -22,7 +22,7 @@ img {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 3px;
+	margin-top: 2px;
 }
 .header-container ul li {
 	background-color: #ffffff;
@@ -34,6 +34,7 @@ img {
 h1 {
 	margin-left: 10px;
 }
+
 @media only screen and (max-width: 900px) {
 	.header-container {
 		width: 100%;

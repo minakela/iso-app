@@ -17,13 +17,13 @@
       "isDeleted": false
     }
   ],
-  "user": [
+  "users": [
     {
       "id": 1,
       "firstName": "John",
       "lastName": "Doe",
       "email": "john.doe@example.com",
-      "passwordHash": "hashed_password_1",
+      "password": "$2a$10$CK5drWnQdQ7QKs9o1kkGguQUc4nYSXkQe7q8XeVruF4pQl8vwAqcm",
       "roleId": 2,
       "modifiedBy": 3,
       "createdBy": 1,
@@ -257,6 +257,11 @@
       "createdBy": 1,
       "deletedBy": null,
       "isDeleted": false
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$npSjrUyfX835rtJv4KrRS./iOUF6vwnqhnIMM9jZz/8E2wvJP.blW",
+      "id": 21
     }
   ],
   "incident-type": [

@@ -3,7 +3,6 @@ import Input from '../../common/input/Input';
 import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 import IIncidentForm from './IIncidentForm';
 import Button from '../../common/button/button';
-import Dropdown from '../../common/dropdown/Dropdown';
 
 const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 	incident,
