@@ -3,11 +3,20 @@ import Input from '../../common/input/Input';
 import css from './loginStyle.module.css';
 import { useTranslation } from 'react-i18next';
 import Button from '../../common/button/button';
+import authService from '../../services/auth/AuthService';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FunctionComponent = () => {
 	const { t } = useTranslation('common');
+	const navigate = useNavigate();
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+	const login = async () => {
+		await authService.login({ email, password });
+		navigate('/incidents');
+	};
 
 	return (
 		<div className={css.login}>
@@ -29,7 +38,7 @@ const Login: React.FunctionComponent = () => {
 					setPassword(event.target.value);
 				}}
 			/>
-			<Button name={t('button.login')} isHidden={false} onClick={() => {}} />
+			<Button name={t('button.login')} isHidden={false} onClick={login} />
 		</div>
 	);
 };

@@ -5,6 +5,8 @@ import incidentStatusService from '../../services/incidentStatus/IncidentStatusS
 import Pagination from '../../composite/paginator/paginator';
 import css from '../incidentsPage/incidentsPage.module.css';
 import Button from '../../common/button/button';
+import Modal from '../../composite/dialogBox/Modal';
+import IncidentStatusForm from '../../composite/incidentStatusForm/incidentStatusForm';
 
 const IncidentStatusPage = () => {
 	const { t } = useTranslation('common');
@@ -12,6 +14,8 @@ const IncidentStatusPage = () => {
 	const [numOfPages, setNumOfPages] = useState<number>(0);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const perPage = 5;
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const [incident, setIncident] = useState<IIncidentStatuses>();
 
 	const getAllIncidentStatusesPerPage = async () => {
 		const data = await incidentStatusService.getAllIncidentStatusesPerPage(
@@ -33,16 +37,25 @@ const IncidentStatusPage = () => {
 		getAllIncidentStatus();
 	}, []);
 
-	const editIncidentStatus = (id: number) => {};
+	const editIncidentStatus = async (id: number) => {
+		setIsModalOpen(true);
+		const getIncident = await incidentStatusService.getIncidentStatus(id);
+		setIncident(getIncident);
+	};
 	const deleteIncidentStatus = async (id: number) => {
 		await incidentStatusService.deleteIncidentStatus(id);
+	};
+	const onIncidentEdit = async (incident: IIncidentStatuses) => {
+		await incidentStatusService.updateIncidentStatus(incident);
+		setIsModalOpen(false);
+		setIncident(undefined);
 	};
 	return (
 		<div className={css['page-container']}>
 			<table className="table">
 				<thead>
 					<tr>
-						<td>{t('incidentStatus.id')}</td>
+						<td>{t('incidentStatus.serialNumber')}</td>
 						<td>{t('incidentStatus.name')}</td>
 						<td>{t('incidentStatus.edit')}</td>
 						<td>{t('incidentStatus.delete')}</td>
@@ -76,6 +89,17 @@ const IncidentStatusPage = () => {
 					onPageChange={(newPage) => setCurrentPage(newPage)}
 				/>
 			</div>
+			<Modal
+				isOpen={isModalOpen}
+				hasCloseBtn={true}
+				onClose={() => setIsModalOpen(false)}>
+				{incident && (
+					<IncidentStatusForm
+						incidentStatus={incident}
+						onSave={onIncidentEdit}
+					/>
+				)}
+			</Modal>
 		</div>
 	);
 };

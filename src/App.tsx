@@ -18,15 +18,23 @@ const links = [
 function App() {
 	const location = useLocation();
 	const isLoginPage = location.pathname === '/login';
+
+	const isLoggedIn = !!localStorage.getItem('token');
 	return (
 		<div className="App">
-			<Header links={isLoginPage ? [] : links} />
+			<Header links={isLoginPage ? [] : links} isOnLoginPage={isLoginPage} />
 			<Routes>
+				{isLoggedIn ? (
+					<>
+						<Route path="/incidents" element={<IncidentsPage />} />
+						<Route path="/incident-type" element={<IncidentTypePage />} />
+						<Route path="/incident-status" element={<IncidentStatusPage />} />
+					</>
+				) : (
+					<Route path="*" element={<Login />} />
+				)}
 				<Route path="/home" element={<Home />} />
-				<Route path="/" element={<Login />} />
-				<Route path="/incidents" element={<IncidentsPage />} />
-				<Route path="/incident-type" element={<IncidentTypePage />} />
-				<Route path="/incident-status" element={<IncidentStatusPage />} />
+				<Route path="/login" element={<Login />} />
 			</Routes>
 			<Footer />
 		</div>

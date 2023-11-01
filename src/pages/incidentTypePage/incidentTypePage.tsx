@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import Pagination from '../../composite/paginator/paginator';
 import css from '../incidentsPage/incidentsPage.module.css';
 import Button from '../../common/button/button';
+import Modal from '../../composite/dialogBox/Modal';
+import IncidentTypeForm from '../../composite/incidentTypeForm/incidentTypeForm';
 
 const IncidentTypePage = () => {
 	const { t } = useTranslation('common');
@@ -12,6 +14,8 @@ const IncidentTypePage = () => {
 	const [numOfPages, setNumOfPages] = useState<number>(0);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const perPage = 5;
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const [incident, setIncident] = useState<IIncidentTypes>();
 
 	const getAllIncidentTypesPerPage = async () => {
 		const data = await incidentTypeService.getAllIncidentTypesPerPage(
@@ -31,16 +35,26 @@ const IncidentTypePage = () => {
 	useEffect(() => {
 		getAllIncidentTypes();
 	}, []);
-	const editIncidentType = (id: number) => {};
+	const editIncidentType = async (id: number) => {
+		setIsModalOpen(true);
+		const getIncident = await incidentTypeService.getIncidentType(id);
+		setIncident(getIncident);
+	};
 	const deleteIncidentType = async (id: number) => {
-		const response = await incidentTypeService.deleteIncidentType(id);
+		// const response =
+		await incidentTypeService.deleteIncidentType(id);
+	};
+	const onIncidentEdit = async (incident: IIncidentTypes) => {
+		await incidentTypeService.updateIncidentType(incident);
+		setIsModalOpen(false);
+		setIncident(undefined);
 	};
 	return (
 		<div className={css['page-container']}>
 			<table className="table">
 				<tbody>
 					<tr>
-						<th>{t('incidentType.id')}</th>
+						<th>{t('incidentType.serialNumber')}</th>
 						<th>{t('incidentType.name')}</th>
 						<th>{t('incidentType.edit')}</th>
 						<th>{t('incidentType.delete')}</th>
@@ -48,7 +62,7 @@ const IncidentTypePage = () => {
 					{incidentType.map((incidentType) => (
 						<tr key={incidentType.id}>
 							<td>{incidentType.serialNumber}</td>
-							<td>{incidentType.description}</td>
+							<td>{incidentType.name}</td>
 							<td>
 								<Button
 									name={t('button.edit')}
@@ -72,6 +86,14 @@ const IncidentTypePage = () => {
 					onPageChange={(newPage) => setCurrentPage(newPage)}
 				/>
 			</div>
+			<Modal
+				isOpen={isModalOpen}
+				hasCloseBtn={true}
+				onClose={() => setIsModalOpen(false)}>
+				{incident && (
+					<IncidentTypeForm incidentType={incident} onSave={onIncidentEdit} />
+				)}
+			</Modal>
 		</div>
 	);
 };
