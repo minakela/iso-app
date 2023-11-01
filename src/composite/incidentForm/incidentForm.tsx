@@ -17,22 +17,24 @@ const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 	});
 
 	useEffect(() => {
-		setIncidentDetails({
-			id: incident.id,
-			serialNumber: incident.serialNumber,
-			description: incident.description,
-			reportedDate: incident.reportedDate,
-			reportedBy: incident.reportedBy,
-			modifiedBy: incident.modifiedBy,
-			createdBy: incident.createdBy,
-			acceptedBy: incident.acceptedBy,
-			deletedBy: incident.deletedBy,
-			isDeleted: incident.isDeleted,
-			resolved: incident.resolved,
-			resolvedDate: incident.resolvedDate,
-			statusId: incident.statusId,
-			workPlace: incident.workPlace,
-		});
+		if (incident) {
+			setIncidentDetails({
+				id: incident.id,
+				serialNumber: incident.serialNumber,
+				description: incident.description,
+				reportedDate: incident.reportedDate,
+				reportedBy: incident.reportedBy,
+				modifiedBy: incident.modifiedBy,
+				createdBy: incident.createdBy,
+				acceptedBy: incident.acceptedBy,
+				deletedBy: incident.deletedBy,
+				isDeleted: incident.isDeleted,
+				resolved: incident.resolved,
+				resolvedDate: incident.resolvedDate,
+				statusId: incident.statusId,
+				workPlace: incident.workPlace,
+			});
+		}
 	}, [incident]);
 	return (
 		<form>
@@ -54,7 +56,6 @@ const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 				value={incidentDetails?.description}
 				placeholder="Description"
 				onChange={(e) => {
-					debugger;
 					setIncidentDetails({
 						...incidentDetails,
 						description: e.target.value,
@@ -67,7 +68,6 @@ const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 				value={incidentDetails?.workPlace}
 				placeholder="Work place"
 				onChange={(e) => {
-					debugger;
 					setIncidentDetails({
 						...incidentDetails,
 						workPlace: e.target.value,

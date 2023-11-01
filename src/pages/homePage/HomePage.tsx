@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import css from './homeStyle.module.css';
 import Button from '../../common/button/button';
+import Modal from '../../composite/dialogBox/Modal';
+import IncidentForm from '../../composite/incidentForm/incidentForm';
+import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
+import incidentService from '../../services/incident/IncidentService';
 
 const HomePage = () => {
 	const { t } = useTranslation('common');
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	function onIncidentCreate(incident: IIncidentsDTO): void {
+		incidentService.createIncident(incident);
+	}
+
 	return (
 		<div className="container mt-5">
 			<div className="row">
@@ -22,7 +31,9 @@ const HomePage = () => {
 								<Button
 									name={t('button.report')}
 									isHidden={false}
-									onClick={() => {}}
+									onClick={() => {
+										setIsModalOpen(true);
+									}}
 								/>
 								<Button
 									name={t('button.review')}
@@ -32,10 +43,17 @@ const HomePage = () => {
 							</div>
 						</div>
 					</div>
+					<Modal
+						isOpen={isModalOpen}
+						hasCloseBtn={true}
+						onClose={() => setIsModalOpen(false)}>
+						<div className={css['modal-content']}>
+							<IncidentForm onSave={onIncidentCreate} />
+						</div>
+					</Modal>
 				</div>
 			</div>
 		</div>
 	);
 };
-
 export default HomePage;

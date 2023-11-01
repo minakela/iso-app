@@ -6,9 +6,13 @@ import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 class IncidentService implements IIncidentService {
 	api = `http://localhost:8000/incident`;
 
-	createIncident = async (incident: IIncident): Promise<IIncident> => {
+	createIncident = async (incident: IIncidentsDTO): Promise<IIncident> => {
 		try {
-			const response = await axios.post(`${this.api}`, incident);
+			const response = await axios.post(`${this.api}`, {
+				...incident,
+				reportedBy: localStorage.getItem('user'),
+				reportedDate: new Date(),
+			});
 			return response.data;
 		} catch (error) {
 			throw error;
