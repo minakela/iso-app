@@ -9,23 +9,21 @@ import IncidentTypePage from './pages/incidentTypePage/incidentTypePage';
 import IncidentStatusPage from './pages/incidentStatusPage/incidentStatusPage';
 
 const links = [
-	{ href: '/home', label: 'Home' },
+	{ href: '/', label: 'Home' },
 	{ href: '/incidents', label: 'Incidents' },
 	{ href: '/incident-type', label: 'Incident type' },
 	{ href: '/incident-status', label: 'Incident status' },
 ];
 
 function App() {
-	const location = useLocation();
-	const isLoginPage = location.pathname === '/login';
-
 	const isLoggedIn = !!localStorage.getItem('token');
 	return (
 		<div className="App">
-			<Header links={isLoginPage ? [] : links} isOnLoginPage={isLoginPage} />
+			<Header links={!isLoggedIn ? [] : links} showLogout={isLoggedIn} />
 			<Routes>
 				{isLoggedIn ? (
 					<>
+						<Route path="/" element={<Home />} />
 						<Route path="/incidents" element={<IncidentsPage />} />
 						<Route path="/incident-type" element={<IncidentTypePage />} />
 						<Route path="/incident-status" element={<IncidentStatusPage />} />
@@ -33,7 +31,6 @@ function App() {
 				) : (
 					<Route path="*" element={<Login />} />
 				)}
-				<Route path="/home" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 			</Routes>
 			<Footer />

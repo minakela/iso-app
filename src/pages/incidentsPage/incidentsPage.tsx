@@ -8,6 +8,7 @@ import Modal from '../../composite/dialogBox/Modal';
 import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 import IncidentForm from '../../composite/incidentForm/incidentForm';
 import Button from '../../common/button/button';
+import Input from '../../common/input/Input';
 
 const IncidentsPage = () => {
 	const { t } = useTranslation('common');
@@ -16,21 +17,24 @@ const IncidentsPage = () => {
 	const [numOfPages, setNumOfPages] = useState<number>(0);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [incident, setIncident] = useState<IIncident>();
-	const perPage = 7;
+	const perPage = 5;
 	const getAllIncidentsPerPage = async () => {
 		const data = await incidentService.getAllIncidentsPerPage(
 			perPage,
-			currentPage
+			currentPage,
+			searchQuery,
+			searchQueryDesc
 		);
 		setIncidents(data);
 	};
-
 	useEffect(() => {
 		getAllIncidentsPerPage();
 	}, [currentPage]);
 
 	const getAllIncidents = async () => {
-		const data = await incidentService.getAllIncidents();
+		const data = await incidentService.getAllIncidents(searchQuery);
+		const data2 = await incidentService.getAllIncidents(searchQueryDesc);
+		setCurrentPage(1);
 		setNumOfPages(Math.round(data.length / perPage));
 	};
 
@@ -45,21 +49,49 @@ const IncidentsPage = () => {
 	};
 	const deleteIncident = async (id: number) => {
 		await incidentService.deleteIncident(id);
+		await getAllIncidents();
+		await getAllIncidentsPerPage();
 	};
 
 	const onIncidentEdit = async (incident: IIncidentsDTO) => {
 		await incidentService.updateIncident(incident);
 		setIsModalOpen(false);
 		setIncident(undefined);
+		await getAllIncidents();
+		await getAllIncidentsPerPage();
 	};
+
+	const [searchQuery, setSearchQuery] = useState<string>('');
+	const [searchQueryDesc, setSearchQueryDesc] = useState<string>('');
+
+	useEffect(() => {
+		getAllIncidentsPerPage();
+		getAllIncidents();
+	}, [searchQuery, searchQueryDesc]);
 
 	return (
 		<div className={css['page-container']}>
+			<div className={css['search-container']}>
+				<Input
+					onChange={(e) => setSearchQuery(e.target.value)}
+					name="Serial number search"
+					type="text"
+					value={searchQuery}
+					placeholder="Search incidents by serial number"
+				/>
+				<Input
+					onChange={(e) => setSearchQueryDesc(e.target.value)}
+					name="Description search"
+					type="text"
+					value={searchQueryDesc}
+					placeholder="Search incidents by description"
+				/>
+			</div>
 			<table className="table">
 				<thead>
 					<tr>
 						<th>{t('incident.serialNumber')}</th>
-						<th>{t('incident.incident')}</th>
+						<th>{t('incident.description')}</th>
 						<th>{t('incident.reportedDate')}</th>
 						<th>{t('incident.createdBy')}</th>
 						<th>{t('incident.resolvedDate')}</th>

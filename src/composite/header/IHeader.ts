@@ -1,6 +1,6 @@
 export default interface IHeader {
 	links: ILink[];
-	isOnLoginPage: boolean;
+	showLogout: boolean;
 }
 interface ILink {
 	href: string;

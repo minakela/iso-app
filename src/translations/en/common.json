@@ -7,6 +7,9 @@
 		"rule4": "4. Avoid Duplications: Check if the incident has already been reported to avoid duplication. If it has, you can add additional information to the existing report."
 	},
 	"header": { "h1": "Tiac ISO issue service" },
+	"footer": {
+		"text": "TIAC DOO | Industrijska 3b | 21000 | Novi Sad | Serbia | © Copyright 2023 TIAC"
+	},
 	"incidentType": {
 		"serialNumber": "Serial number",
 		"name": "Type name",
@@ -15,7 +18,7 @@
 	},
 	"incident": {
 		"serialNumber": "Serial number",
-		"incident": "Incident",
+		"description": "Description",
 		"reportedDate": "Reported date",
 		"createdBy": "Created By",
 		"resolvedDate": "Resolved date",

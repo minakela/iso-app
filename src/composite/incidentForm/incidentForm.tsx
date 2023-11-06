@@ -3,17 +3,32 @@ import Input from '../../common/input/Input';
 import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 import IIncidentForm from './IIncidentForm';
 import Button from '../../common/button/button';
+import Dropdown from '../../common/dropdown/Dropdown';
+import workPlaceService from '../../services/workPlace/WorkPlaceService';
+import IWorkPlace from '../../models/IWorkPlace';
 
 const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 	incident,
 	onSave,
 }) => {
+	const [workplaceOptions, setWorkplaceOptions] = useState<IWorkPlace[]>([]);
+	const getAllWorkPlaces = async () => {
+		const data = await workPlaceService.getAllWorkPlaces();
+		setWorkplaceOptions(data);
+	};
+
+	useEffect(() => {
+		getAllWorkPlaces();
+	}, []);
+
 	const [incidentDetails, setIncidentDetails] = useState<IIncidentsDTO>({
 		serialNumber: '',
 		description: '',
 		reportedDate: '',
 		resolved: false,
 		workPlace: '',
+		statusId: 1,
+		createdBy: Number(localStorage.getItem('user')),
 	});
 
 	useEffect(() => {
@@ -62,19 +77,20 @@ const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 					});
 				}}
 			/>
-			<Input
-				name="Work place"
-				type="text"
+			<Dropdown
+				label="Workplace"
 				value={incidentDetails?.workPlace}
-				placeholder="Work place"
-				onChange={(e) => {
+				onChange={(value) =>
 					setIncidentDetails({
 						...incidentDetails,
-						workPlace: e.target.value,
-					});
-				}}
+						workPlace: value,
+					})
+				}
+				options={workplaceOptions.map((workplace) => ({
+					value: workplace.label,
+					label: workplace.value,
+				}))}
 			/>
-
 			<Button name="Save" onClick={() => onSave(incidentDetails)} />
 		</form>
 	);

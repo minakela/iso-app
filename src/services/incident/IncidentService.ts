@@ -11,6 +11,7 @@ class IncidentService implements IIncidentService {
 			const response = await axios.post(`${this.api}`, {
 				...incident,
 				reportedBy: localStorage.getItem('user'),
+				modifiedBy: localStorage.getItem('user'),
 				reportedDate: new Date(),
 			});
 			return response.data;
@@ -45,11 +46,13 @@ class IncidentService implements IIncidentService {
 
 	getAllIncidentsPerPage = async (
 		limit: number,
-		page: number
+		page: number,
+		searchQuery: string = '',
+		searchQueryDesc: string = ''
 	): Promise<IIncident[]> => {
 		try {
 			const response = await axios.get(
-				`${this.api}?_limit=${limit}&_page=${page}`
+				`${this.api}?_limit=${limit}&_page=${page}&serialNumber_like=${searchQuery}&description_like=${searchQueryDesc}`
 			);
 			return response.data;
 		} catch (error) {
@@ -57,9 +60,11 @@ class IncidentService implements IIncidentService {
 		}
 	};
 
-	getAllIncidents = async (): Promise<IIncident[]> => {
+	getAllIncidents = async (searchQuery = ''): Promise<IIncident[]> => {
 		try {
-			const response = await axios.get(`${this.api}`);
+			const response = await axios.get(
+				`${this.api}?serialNumber_like=${searchQuery}`
+			);
 			return response.data;
 		} catch (error) {
 			throw error;

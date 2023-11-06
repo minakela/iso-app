@@ -24,7 +24,6 @@ const IncidentStatusPage = () => {
 		);
 		setIncidentStatus(data);
 	};
-
 	useEffect(() => {
 		getAllIncidentStatusesPerPage();
 	}, [currentPage]);

@@ -1,15 +1,13 @@
 import React from 'react';
 import css from './footer.module.css';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FunctionComponent = () => {
+	const { t } = useTranslation('common');
 	return (
 		<div className={css['footer-container']}>
-			<p>
-				TIAC DOO | Industrijska 3b | 21000 | Novi Sad | Serbia | © Copyright
-				2023 TIAC
-			</p>
+			<p>{t('footer.text')}</p>
 		</div>
 	);
 };
-
 export default Footer;

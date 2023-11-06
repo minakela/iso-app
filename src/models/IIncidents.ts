@@ -1,6 +1,5 @@
 import IIncidentStatuses from './IIncidentStatuses';
 import IBaseEntity from './IBaseEntity';
-import IUser from './IUsers';
 
 interface IIncidents extends IBaseEntity<number> {
 	serialNumber: string;

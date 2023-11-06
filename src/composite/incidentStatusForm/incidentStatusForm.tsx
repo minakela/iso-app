@@ -57,7 +57,6 @@ const IncidentStatusForm: React.FunctionComponent<IIncidentStatusForm> = ({
 					})
 				}
 			/>
-
 			<Button name="Save" onClick={() => onSave(incidentStatusDetails)} />
 		</form>
 	);
