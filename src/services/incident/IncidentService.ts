@@ -6,9 +6,14 @@ import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 class IncidentService implements IIncidentService {
 	api = `http://localhost:8000/incident`;
 
-	createIncident = async (incident: IIncident): Promise<IIncident> => {
+	createIncident = async (incident: IIncidentsDTO): Promise<IIncident> => {
 		try {
-			const response = await axios.post(`${this.api}`, incident);
+			const response = await axios.post(`${this.api}`, {
+				...incident,
+				reportedBy: localStorage.getItem('user'),
+				modifiedBy: localStorage.getItem('user'),
+				reportedDate: new Date(),
+			});
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -41,11 +46,13 @@ class IncidentService implements IIncidentService {
 
 	getAllIncidentsPerPage = async (
 		limit: number,
-		page: number
+		page: number,
+		searchQuery: string = '',
+		searchQueryDesc: string = ''
 	): Promise<IIncident[]> => {
 		try {
 			const response = await axios.get(
-				`${this.api}?_limit=${limit}&_page=${page}`
+				`${this.api}?_limit=${limit}&_page=${page}&serialNumber_like=${searchQuery}&description_like=${searchQueryDesc}`
 			);
 			return response.data;
 		} catch (error) {
@@ -53,9 +60,11 @@ class IncidentService implements IIncidentService {
 		}
 	};
 
-	getAllIncidents = async (): Promise<IIncident[]> => {
+	getAllIncidents = async (searchQuery = ''): Promise<IIncident[]> => {
 		try {
-			const response = await axios.get(`${this.api}`);
+			const response = await axios.get(
+				`${this.api}?serialNumber_like=${searchQuery}`
+			);
 			return response.data;
 		} catch (error) {
 			throw error;

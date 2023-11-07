@@ -21,7 +21,7 @@ const Login: React.FunctionComponent = () => {
 	return (
 		<div className={css.login}>
 			<Input
-				name="email"
+				name={t('input.input')}
 				type="input"
 				value={email}
 				placeholder="Enter your email"
@@ -30,7 +30,7 @@ const Login: React.FunctionComponent = () => {
 				}}
 			/>
 			<Input
-				name="Password"
+				name={t('input.password')}
 				type="password"
 				value={password}
 				placeholder="Enter your password"

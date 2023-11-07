@@ -17,6 +17,7 @@ class AuthService implements IAuthService {
 
 			const token = response.data.accessToken;
 			localStorage.setItem('token', token);
+			localStorage.setItem('user', response.data.user.id);
 			return response.data;
 		} catch (error) {
 			throw error;

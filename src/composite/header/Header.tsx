@@ -4,18 +4,15 @@ import IHeader from './IHeader';
 import Link from '../../common/link/link';
 import { useTranslation } from 'react-i18next';
 import Button from '../../common/button/button';
+import logout from '../../common/logout/logout';
 
-const Header: React.FunctionComponent<IHeader> = ({ links, isOnLoginPage }) => {
+const Header: React.FunctionComponent<IHeader> = ({ links, showLogout }) => {
 	const linkStyle = {
 		margin: '3px',
 		textDecoration: 'none',
 		color: '#7b0808',
 	};
 
-	const logout = async () => {
-		window.location.href = '/login';
-		localStorage.removeItem('token');
-	};
 	const { t } = useTranslation('common');
 	return (
 		<div className={css['header-container']}>
@@ -31,7 +28,7 @@ const Header: React.FunctionComponent<IHeader> = ({ links, isOnLoginPage }) => {
 						</Link>
 					</li>
 				))}
-				{!isOnLoginPage && (
+				{showLogout && (
 					<Button name={'Logout'} onClick={logout} style={linkStyle} />
 				)}
 			</ul>

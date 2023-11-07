@@ -3,36 +3,53 @@ import Input from '../../common/input/Input';
 import IIncidentsDTO from '../../models/DTO/IIncidentDTO';
 import IIncidentForm from './IIncidentForm';
 import Button from '../../common/button/button';
+import Dropdown from '../../common/dropdown/Dropdown';
+import workPlaceService from '../../services/workPlace/WorkPlaceService';
+import IWorkPlace from '../../models/IWorkPlace';
 
 const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 	incident,
 	onSave,
 }) => {
+	const [workplaceOptions, setWorkplaceOptions] = useState<IWorkPlace[]>([]);
+	const getAllWorkPlaces = async () => {
+		const data = await workPlaceService.getAllWorkPlaces();
+		setWorkplaceOptions(data);
+	};
+
+	useEffect(() => {
+		getAllWorkPlaces();
+	}, []);
+
 	const [incidentDetails, setIncidentDetails] = useState<IIncidentsDTO>({
 		serialNumber: '',
 		description: '',
 		reportedDate: '',
 		resolved: false,
 		workPlace: '',
+		statusId: 1,
+		createdBy: Number(localStorage.getItem('user')),
 	});
 
 	useEffect(() => {
-		setIncidentDetails({
-			id: incident.id,
-			serialNumber: incident.serialNumber,
-			description: incident.description,
-			reportedDate: incident.reportedDate,
-			reportedBy: incident.reportedBy,
-			modifiedBy: incident.modifiedBy,
-			createdBy: incident.createdBy,
-			acceptedBy: incident.acceptedBy,
-			deletedBy: incident.deletedBy,
-			isDeleted: incident.isDeleted,
-			resolved: incident.resolved,
-			resolvedDate: incident.resolvedDate,
-			statusId: incident.statusId,
-			workPlace: incident.workPlace,
-		});
+		if (incident) {
+			setIncidentDetails({
+				id: incident.id,
+				serialNumber: incident.serialNumber,
+				description: incident.description,
+				reportedDate: incident.reportedDate,
+				reportedBy: incident.reportedBy,
+				modifiedBy: incident.modifiedBy,
+				createdBy: incident.createdBy,
+				acceptedBy: incident.acceptedBy,
+				deletedBy: incident.deletedBy,
+				isDeleted: incident.isDeleted,
+				resolved: incident.resolved,
+				resolvedDate: incident.resolvedDate,
+				statusId: incident.statusId,
+				workPlace: incident.workPlace,
+			});
+		}
 	}, [incident]);
 	return (
 		<form>
@@ -54,27 +71,26 @@ const IncidentForm: React.FunctionComponent<IIncidentForm> = ({
 				value={incidentDetails?.description}
 				placeholder="Description"
 				onChange={(e) => {
-					debugger;
 					setIncidentDetails({
 						...incidentDetails,
 						description: e.target.value,
 					});
 				}}
 			/>
-			<Input
-				name="Work place"
-				type="text"
+			<Dropdown
+				label="Workplace"
 				value={incidentDetails?.workPlace}
-				placeholder="Work place"
-				onChange={(e) => {
-					debugger;
+				onChange={(value) =>
 					setIncidentDetails({
 						...incidentDetails,
-						workPlace: e.target.value,
-					});
-				}}
+						workPlace: value,
+					})
+				}
+				options={workplaceOptions.map((workplace) => ({
+					value: workplace.label,
+					label: workplace.value,
+				}))}
 			/>
-
 			<Button name="Save" onClick={() => onSave(incidentDetails)} />
 		</form>
 	);

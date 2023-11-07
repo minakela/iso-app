@@ -26,7 +26,7 @@ const Modal: React.FunctionComponent<IModalProps> = ({
 	}, [isOpen]);
 
 	return (
-		<div className={css['overlay']}>
+		<div className={isModalOpen ? css['overlay'] : ''}>
 			<dialog
 				open={isModalOpen}
 				ref={modalRef}
