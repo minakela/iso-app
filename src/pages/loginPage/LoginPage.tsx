@@ -4,18 +4,16 @@ import css from './loginStyle.module.css';
 import { useTranslation } from 'react-i18next';
 import Button from '../../common/button/button';
 import authService from '../../services/auth/AuthService';
-import { useNavigate } from 'react-router-dom';
 
 const Login: React.FunctionComponent = () => {
 	const { t } = useTranslation('common');
-	const navigate = useNavigate();
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
 	const login = async () => {
 		await authService.login({ email, password });
-		navigate('/incidents');
+		window.location.href = '/incidents';
 	};
 
 	return (
