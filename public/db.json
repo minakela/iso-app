@@ -23,7 +23,7 @@
 			"firstName": "John",
 			"lastName": "Doe",
 			"email": "john.doe@example.com",
-			"password": "$2a$10$CK5drWnQdQ7QKs9o1kkGguQUc4nYSXkQe7q8XeVruF4pQl8vwAqcm",
+			"password": "$2a$10$TWCLCm/S5mOxAAY2nsOHh.wAVET1.RTqUQgbuu7SYkZYsb4P6ZAZe",
 			"roleId": 2,
 			"modifiedBy": 3,
 			"createdBy": 1,
